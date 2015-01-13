@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bdb.rmiclient.compute.ComputeEngineTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2014-12-17T02:25:03" hostname="BBEASLEY-01" time="0.303">
+  <properties/>
+  <testcase name="testRMIConnectivity" classname="com.bdb.rmiclient.compute.ComputeEngineTest" time="0.303"/>
+  <system-out><![CDATA[ComputeEngine bound
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

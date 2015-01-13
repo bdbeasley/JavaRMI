@@ -1,0 +1,42 @@
+import java.rmi.registry.LocateRegistry
+import java.rmi.server.UnicastRemoteObject
+
+version = '1.0'
+
+buildscript {
+    dependencies {
+        classpath project(":RMIInterface")
+    }
+}
+
+def rmiRegistry
+
+task startRMIRegistry << {
+    println "Starting RMI Registry"
+    try {
+        rmiRegistry = java.rmi.registry.LocateRegistry.createRegistry(1099);
+        println "RMI Registry Started"
+    } catch (Exception e) {
+        System.out.println("Exception starting RMI registry:");
+        e.printStackTrace();
+    }
+    //rmiRegistry = LocateRegistry.createRegistry(1099)
+    /*try {
+        Runtime.getRuntime().exec("rmiregistry");
+        Runtime.getRuntime().exec("rmid -J-Djava.security.policy=rmid.policy");
+    }
+    catch (java.io.IOException e) {}*/
+}
+
+task stopRMIRegistry << {
+    println "Stopping RMI Registry"
+    UnicastRemoteObject.unexportObject(rmiRegistry, true)
+    println "RMI Registry Stopped"
+}
+
+tasks.test.dependsOn('startRMIRegistry')
+tasks.test.finalizedBy('stopRMIRegistry')
+
+dependencies {
+    compile project (':RMIInterface')
+}

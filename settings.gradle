@@ -1,0 +1,6 @@
+rootProject.name = 'Java RMI'
+include 'RMIClient'
+include 'RMIServer'
+
+include 'RMIInterface'
+
